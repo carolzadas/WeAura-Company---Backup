@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2E2B27" />
+
+  <title>WeAura Company</title>
+  <meta
+    name="description"
+    content="A WeAura Co cria sites, landing pages e experiências digitais que traduzem a essência do seu negócio. Design com propósito, tecnologia sem complicação."
+  />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.auralab.com.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="WeAura Co" />
+  <meta property="og:title" content="WeAura Co — Presença digital com identidade" />
+  <meta property="og:description" content="Criamos sites e experiências digitais que traduzem a essência da sua marca para o mundo online." />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://www.auralab.com.br/" />
+  <meta property="og:image" content="og-image.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WeAura Co — Presença digital com identidade" />
+  <meta name="twitter:description" content="Criamos sites e experiências digitais que traduzem a essência da sua marca para o mundo online." />
+  <meta name="twitter:image" content="og-image.svg" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Esconde só os elementos da abertura até o GSAP assumir (evita "piscar").
+       Se o GSAP não carregar em 2,5s, a página aparece normalmente. -->
+  <script>
+    (function () {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var root = document.documentElement;
+      root.classList.add("gsap-pending");
+      setTimeout(function () { root.classList.remove("gsap-pending"); }, 2500);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "WeAura Co",
+      "description": "Estúdio digital especializado em sites institucionais, landing pages, one pages e presença digital para pequenos negócios e profissionais.",
+      "slogan": "Presença digital com identidade.",
+      "url": "https://www.auralab.com.br/",
+      "areaServed": "BR",
+      "sameAs": ["https://www.instagram.com/weaura.company/"],
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Site Institucional" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Landing Page" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "One Page" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Link na Bio" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Página para WhatsApp" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Catálogo Digital" } }
+      ]
+    }
+  </script>
+</head>
+<body class="has-dark-hero">
+  <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+  <div class="scroll-rail" aria-hidden="true">
+    <span class="scroll-rail__track"><span class="scroll-rail__fill" id="scroll-rail-fill"></span></span>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__bar">
+      <a href="#inicio" class="header__logo">WeAura Co</a>
+
+      <nav class="header__nav" aria-label="Navegação principal">
+        <ul id="nav-links"></ul>
+      </nav>
+
+      <div class="header__actions">
+        <a class="btn btn--small btn--outline header__cta" data-wa="default" target="_blank" rel="noopener noreferrer">
+          <span>Conversar sobre um projeto</span>
+        </a>
+        <button type="button" class="header__toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu"></button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <nav aria-label="Navegação móvel">
+        <ul id="mobile-nav-links"></ul>
+      </nav>
+      <div class="mobile-menu__foot">
+        <a class="btn btn--ink mobile-menu__cta" data-wa="default" target="_blank" rel="noopener noreferrer">
+          <span>Conversar sobre um projeto</span>
+        </a>
+        <p class="mobile-menu__social">
+          <a href="https://www.instagram.com/weaura.company/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a data-wa="default" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="aura">
+          <div class="aura__layer" data-depth="18"><span class="aura__blob aura__blob--sage"></span></div>
+          <div class="aura__layer" data-depth="30"><span class="aura__blob aura__blob--terracotta"></span></div>
+          <div class="aura__layer" data-depth="42"><span class="aura__blob aura__blob--beige"></span></div>
+          <!-- Feixes de luz diagonais (inclinam levemente com o cursor) -->
+          <div class="hero__beams" data-depth="26">
+            <span class="hero__beam hero__beam--1"></span>
+            <span class="hero__beam hero__beam--2"></span>
+            <span class="hero__beam hero__beam--3"></span>
+          </div>
+          <!-- Poeira de luz em duas profundidades (preenchida pelo JS) -->
+          <div class="hero__motes" data-depth="14"></div>
+          <div class="hero__motes hero__motes--near" data-depth="48"></div>
+        </div>
+        <!-- Luz ambiente que acompanha o visitante -->
+        <div class="hero__spot"></div>
+        <div class="grain"></div>
+        <!-- Luz bege que sobe no scroll e "entrega" o visitante à seção Sobre -->
+        <div class="hero__dawn"></div>
+      </div>
+
+      <div class="container hero__inner">
+        <!-- Palco: a marca é a protagonista; saudação e slogan orbitam em volta -->
+        <div class="hero__stage">
+          <div class="hero__brand">
+            <!-- Aura que "respira" ao redor da marca (o texto fica parado; só a luz se move) -->
+            <div class="hero__halo" data-depth="10" aria-hidden="true">
+              <span class="hero__halo-core"></span>
+              <span class="hero__halo-ring"></span>
+            </div>
+            <h1 class="hero__heading" aria-label="Olá, somos a WeAura Co.">
+              <span class="hero__greeting" aria-hidden="true">Olá, somos a</span>
+              <span class="hero__wordmark" id="hero-wordmark" aria-hidden="true">WeAura Co<span class="hero__dot">.</span></span>
+            </h1>
+            <p class="hero__slogan">Criamos sites e experiências digitais que traduzem a essência da sua marca.</p>
+          </div>
+        </div>
+
+        <!-- Rodapé editorial: apoio discreto, nunca disputa com a marca -->
+        <div class="hero__foot">
+          <p class="hero__lead">
+            <span class="hero__lead-line">Enquanto muita gente só quer estar na internet,</span>
+            <span class="hero__lead-line">a gente quer que sua marca <strong>seja reconhecida, lembrada e escolhida</strong> por quem chega até ela.</span>
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--cream btn--magnetic" data-wa="default" target="_blank" rel="noopener noreferrer"><span>Criar meu projeto</span></a>
+            <a class="btn btn--outline btn--magnetic" href="#projetos"><span>Ver projetos</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 · SERVIÇOS — o que fazemos ============ -->
+    <section id="servicos" class="services">
+      <!-- Ponte hero → serviços: atmosfera que sobe sobre o fim do hero com o scroll -->
+      <div class="services__bridge" aria-hidden="true">
+        <span class="bridge__glow bridge__glow--sage"></span>
+        <span class="bridge__glow bridge__glow--terracotta"></span>
+        <span class="bridge__beam bridge__beam--1"></span>
+        <span class="bridge__beam bridge__beam--2"></span>
+      </div>
+      <div class="container">
+        <header class="services__head">
+          <p class="chapter"><span class="chapter__num" aria-hidden="true"></span><span class="chapter__label">O que fazemos</span></p>
+          <h2 data-split><span class="services__line">Mais do que um site.</span> <span class="services__line">Um espaço para sua marca existir, comunicar e crescer.</span></h2>
+          <p class="services__intro">
+            Conheça os formatos que ajudam a <strong>formar uma presença digital coerente</strong>,
+            pensada para a identidade de cada marca.
+          </p>
+        </header>
+
+        <div class="services__layout">
+          <!-- Palco: o serviço ativo "se monta" aqui (decorativo; o texto está na lista) -->
+          <div class="services__stage" aria-hidden="true">
+            <div class="stage" id="services-stage" data-tone="sage">
+              <span class="stage__glow stage__glow--sage"></span>
+              <span class="stage__glow stage__glow--terracotta"></span>
+              <span class="stage__glow stage__glow--beige"></span>
+              <span class="stage__spot"></span>
+              <p class="stage__label"><span id="stage-group">Presença digital</span><span id="stage-count">01 / 09</span></p>
+              <div class="stage__previews" id="stage-previews"></div>
+            </div>
+          </div>
+
+          <ol class="services__list" id="services-list"></ol>
+        </div>
+
+        <p class="services__outro">
+          Não sabe por onde começar? <a class="link-underline" href="#contato">A gente monta o caminho com você.</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 03 · PROCESSO — como fazemos ============ -->
+    <section id="processo" class="process sheet">
+      <!-- Aura da seção: feixes difusos atrás do granulado e do conteúdo -->
+      <div class="process__aura" aria-hidden="true">
+        <span class="pa-beam pa-beam--1" data-pa="-8"><i></i></span>
+        <span class="pa-beam pa-beam--2" data-pa="12"><i></i></span>
+        <span class="pa-beam pa-beam--3" data-pa="-14"><i></i></span>
+        <span class="pa-beam pa-beam--4" data-pa="9"><i></i></span>
+      </div>
+      <div class="container">
+        <header class="process__head">
+          <p class="chapter chapter--light"><span class="chapter__num" aria-hidden="true"></span><span class="chapter__label">Como fazemos</span></p>
+          <h2 data-split>Um processo simples, do primeiro encontro ao lançamento.</h2>
+          <p>Sem complicação. Você acompanha cada etapa e sabe exatamente como o seu projeto está evoluindo.</p>
+        </header>
+
+        <!-- Jornada: a linha se desenha com o scroll e uma luz percorre as etapas -->
+        <div class="journey" id="journey">
+          <svg class="journey__svg" aria-hidden="true" preserveAspectRatio="none">
+            <path class="journey__track" />
+            <path class="journey__line" id="journey-line" />
+          </svg>
+          <span class="journey__light" id="journey-light" aria-hidden="true"></span>
+          <ol class="journey__steps" id="process-list"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 · PROJETOS — o que criamos ============ -->
+    <section id="projetos" class="projects sheet">
+      <div class="container">
+        <header class="projects__head">
+          <p class="chapter"><span class="chapter__num" aria-hidden="true"></span><span class="chapter__label">O que criamos</span></p>
+          <h2 data-split>Projetos que ganharam presença.</h2>
+          <p>Cada projeto nasce de uma necessidade diferente. Cada solução é criada para uma marca.</p>
+        </header>
+
+        <ol class="showcase" id="projects-list"></ol>
+
+        <p class="projects__next">
+          <span>Seu projeto pode ser o próximo.</span>
+          <a class="link-underline" href="#contato">Vamos conversar</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 05 · NOSSA ESSÊNCIA — por que fazemos ============ -->
+    <!-- Cena de uma tela: fica fixa enquanto o scroll conduz a progressão
+         (marcador → frases → pilares → a atmosfera se aprofunda até o Contato). -->
+    <section id="essencia" class="essence sheet">
+      <div class="essence__scene" id="essence-scene">
+        <div class="essence__aura" aria-hidden="true">
+          <span class="ea-beam ea-beam--1"><i></i></span>
+          <span class="ea-beam ea-beam--2"><i></i></span>
+          <span class="ea-beam ea-beam--3"><i></i></span>
+        </div>
+        <!-- O mesmo fundo do Contato (aura + grão), que assume a cena no fim do scroll -->
+        <div class="essence__cta-bg" aria-hidden="true">
+          <!-- Prolongamento para cima do fundo do Contato: mesmas luzes, na mesma
+               posição (sincronizadas com as originais pelo JS) -->
+          <div class="aura aura--cta" id="essence-cta-aura">
+            <div class="aura__layer"><span class="aura__blob aura__blob--terracotta"></span></div>
+            <div class="aura__layer"><span class="aura__blob aura__blob--beige"></span></div>
+          </div>
+          <div class="grain"></div>
+        </div>
+
+        <div class="container essence__inner">
+          <p class="chapter"><span class="chapter__num" aria-hidden="true"></span><span class="chapter__label">Nossa essência</span></p>
+
+          <h2 class="essence__statement">
+            <span class="essence__line">Sua marca já tem uma história.</span>
+            <span class="essence__line">Nós ajudamos a transformar essa história em presença.</span>
+          </h2>
+
+          <div class="essence__field">
+            <!-- Fio que costura os pilares (traçado pelo JS) -->
+            <svg class="essence__thread" aria-hidden="true" preserveAspectRatio="none"><path id="essence-thread" /></svg>
+            <ul class="essence__pillars" aria-label="O que une o nosso trabalho">
+              <li class="pillar pillar--1"><span class="pillar__light" aria-hidden="true"></span>Design<span class="pillar__dot">.</span></li>
+              <li class="pillar pillar--2"><span class="pillar__light" aria-hidden="true"></span>Estratégia<span class="pillar__dot">.</span></li>
+              <li class="pillar pillar--3"><span class="pillar__light" aria-hidden="true"></span>Tecnologia<span class="pillar__dot">.</span></li>
+              <li class="pillar pillar--4"><span class="pillar__light" aria-hidden="true"></span>Experiência<span class="pillar__dot">.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · CONTATO — vamos criar juntos? ============ -->
+    <section id="contato" class="cta sheet">
+      <div class="cta__bg" aria-hidden="true">
+        <div class="aura aura--cta">
+          <div class="aura__layer" data-depth="24"><span class="aura__blob aura__blob--terracotta"></span></div>
+          <div class="aura__layer" data-depth="36"><span class="aura__blob aura__blob--beige"></span></div>
+        </div>
+        <div class="grain"></div>
+      </div>
+
+      <div class="container cta__grid">
+        <div class="cta__intro">
+          <p class="chapter chapter--light"><span class="chapter__num" aria-hidden="true"></span><span class="chapter__label">Vamos criar o próximo?</span></p>
+          <h2 data-split>Seu negócio já tem uma história. Agora ele precisa de um espaço para contá-la.</h2>
+          <p>Conte um pouco sobre o seu projeto e vamos entender, juntos, como transformar a sua presença digital.</p>
+          <a class="btn btn--cream btn--magnetic cta__primary" data-wa="default" target="_blank" rel="noopener noreferrer"><span>Criar meu projeto</span></a>
+        </div>
+
+        <div class="cta__form-card">
+          <form id="project-form" class="project-form" novalidate>
+            <div class="project-form__header">
+              <h3>Prefere adiantar alguns detalhes?</h3>
+              <p>Três respostas rápidas e a conversa já começa no ponto certo.</p>
+            </div>
+
+            <div class="project-form__field">
+              <label for="pf-nome">Nome</label>
+              <input id="pf-nome" name="nome" type="text" placeholder="Seu nome" autocomplete="name" required />
+            </div>
+
+            <div class="project-form__field">
+              <label for="pf-area">Área de atuação</label>
+              <input id="pf-area" name="area" type="text" placeholder="Ex.: Arquitetura, estética, gastronomia..." required />
+            </div>
+
+            <div class="project-form__field">
+              <label for="pf-interesse">Interesse inicial</label>
+              <select id="pf-interesse" name="interesse" required>
+                <option value="" disabled selected>Interesse inicial</option>
+                <option>Site institucional</option>
+                <option>Landing Page</option>
+                <option>One Page</option>
+                <option>Link na Bio</option>
+                <option>Catálogo Digital</option>
+                <option>Manutenção e atualização</option>
+                <option>Redesign</option>
+                <option>Ainda não sei</option>
+              </select>
+            </div>
+
+            <p class="project-form__error" id="project-form-error" role="alert" hidden></p>
+
+            <button type="submit" class="btn btn--cream btn--magnetic project-form__submit"><span>Enviar pelo WhatsApp</span></button>
+          </form>
+
+          <div class="project-form__success" id="project-form-success" role="status" hidden>
+            <p>Abrimos o WhatsApp com a sua mensagem. É só enviar por lá que a gente responde.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ 07 · FOOTER — assinatura ============ -->
+  <!-- Pequeno e horizontal: marca, navegação, conexão e legal no mesmo sistema.
+       A atmosfera do Contato continua na divisa e vai se apagando até o fim. -->
+  <footer class="footer">
+    <div class="footer__atmos" aria-hidden="true">
+      <div class="aura aura--cta footer__aura" id="footer-aura">
+        <div class="aura__layer"><span class="aura__blob aura__blob--beige footer__blob"></span></div>
+      </div>
+      <div class="grain"></div>
+    </div>
+
+    <div class="container footer__inner">
+      <div class="footer__main">
+        <div class="footer__sign">
+          <p class="footer__logo">WeAura Co<span class="footer__dot">.</span></p>
+          <p class="footer__tagline">Presença digital com identidade.</p>
+        </div>
+
+        <nav class="footer__group" aria-label="Navegação do rodapé">
+          <p class="footer__label">Navegação</p>
+          <ul class="footer__links">
+            <li><a class="footer__link" href="#servicos">O que fazemos</a></li>
+            <li><a class="footer__link" href="#processo">Como fazemos</a></li>
+            <li><a class="footer__link" href="#projetos">Projetos</a></li>
+            <li><a class="footer__link" href="#essencia">Nossa essência</a></li>
+            <li><a class="footer__link" href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer__group footer__group--connect">
+          <p class="footer__label">Conecte-se</p>
+          <ul class="footer__links">
+            <li><a class="footer__link" href="https://www.instagram.com/weaura.company/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a class="footer__link" data-wa="default" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span id="footer-year">2026</span> WeAura Co. Todos os direitos reservados.</p>
+        <nav class="footer__legal" aria-label="Documentos legais">
+          <a class="footer__link" href="politica-de-privacidade/index.html">Política de privacidade</a>
+          <a class="footer__link" href="termos-de-uso/index.html">Termos de uso</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>
