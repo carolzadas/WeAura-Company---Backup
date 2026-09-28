@@ -17,6 +17,7 @@
     setupServices();
     setupJourney();
     setupProjectForm();
+    setupProjectModal();
   });
 
   function renderNav() {
@@ -301,6 +302,145 @@
 
       form.hidden = true;
       successEl.hidden = false;
+    });
+  }
+
+  // "Conversar sobre um projeto" (nav): abre o card do Contato num modal.
+  // Não há um segundo formulário: o mesmo .cta__form-card é movido para o
+  // modal ao abrir e devolvido ao seu lugar ao fechar (lógica de envio intacta).
+  function setupProjectModal() {
+    var modal = document.getElementById("project-modal");
+    var card = document.querySelector(".cta__form-card");
+    var triggers = document.querySelectorAll("[data-project-modal]");
+    if (!modal || !card || !triggers.length) return;
+
+    var body = document.getElementById("project-modal-body");
+    var dialog = modal.querySelector(".project-modal__dialog");
+    var closeBtn = modal.querySelector(".project-modal__close");
+    var placeholder = document.createComment("project-form-card");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var vv = window.visualViewport;
+    var lastFocus = null;
+    var closeTimer = null;
+    var prevOverflow = { html: "", body: "" };
+
+    closeBtn.innerHTML = Icons.ui.close;
+    dialog.setAttribute("tabindex", "-1");
+
+    // Acompanha a área realmente visível (teclado virtual no mobile).
+    function fitViewport() {
+      if (!vv) return;
+      modal.style.setProperty("--modal-vh", vv.height + "px");
+      modal.style.setProperty("--modal-top", vv.offsetTop + "px");
+    }
+
+    function focusables() {
+      return Array.prototype.filter.call(
+        dialog.querySelectorAll("a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])"),
+        function (el) { return !el.disabled && el.offsetParent !== null; }
+      );
+    }
+
+    function open(trigger) {
+      if (!modal.hidden && modal.classList.contains("is-open")) return;
+      clearTimeout(closeTimer);
+      lastFocus = trigger || document.activeElement;
+
+      // Vindo do menu móvel: fecha o menu e, ao sair do modal, devolve o foco ao botão do menu.
+      var mobileMenu = document.getElementById("mobile-menu");
+      if (mobileMenu.contains(lastFocus)) lastFocus = document.getElementById("menu-toggle");
+      if (mobileMenu.classList.contains("mobile-menu--open")) closeMobileMenu();
+
+      if (card.parentNode !== body) {
+        card.parentNode.insertBefore(placeholder, card);
+        body.appendChild(card);
+      }
+
+      prevOverflow.html = document.documentElement.style.overflow;
+      prevOverflow.body = document.body.style.overflow;
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+
+      fitViewport();
+      if (vv) {
+        vv.addEventListener("resize", fitViewport);
+        vv.addEventListener("scroll", fitViewport);
+      }
+
+      modal.hidden = false;
+      body.scrollTop = 0;
+      void modal.offsetWidth; // garante a transição de entrada
+      modal.classList.add("is-open");
+      triggers.forEach(function (t) { t.setAttribute("aria-expanded", "true"); });
+
+      // No toque, foca o diálogo (não abre o teclado sozinho); com mouse/teclado, o 1º campo.
+      var first = card.querySelector("input:not([hidden])");
+      var target = window.matchMedia("(pointer: fine)").matches && first && first.offsetParent ? first : dialog;
+      target.focus({ preventScroll: true });
+    }
+
+    function close() {
+      if (modal.hidden) return;
+      modal.classList.remove("is-open");
+      triggers.forEach(function (t) { t.setAttribute("aria-expanded", "false"); });
+
+      if (vv) {
+        vv.removeEventListener("resize", fitViewport);
+        vv.removeEventListener("scroll", fitViewport);
+      }
+
+      document.documentElement.style.overflow = prevOverflow.html;
+      document.body.style.overflow = prevOverflow.body;
+
+      closeTimer = setTimeout(function () {
+        modal.hidden = true;
+        if (placeholder.parentNode) {
+          placeholder.parentNode.insertBefore(card, placeholder);
+          placeholder.parentNode.removeChild(placeholder);
+        }
+      }, reduceMotion.matches ? 0 : 320);
+
+      if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+    }
+
+    triggers.forEach(function (t) {
+      t.setAttribute("aria-expanded", "false");
+      t.addEventListener("click", function (event) {
+        event.preventDefault();
+        open(t);
+      });
+    });
+
+    modal.addEventListener("click", function (event) {
+      if (event.target.closest("[data-modal-close]")) close();
+    });
+
+    // Campo focado nunca fica escondido atrás do teclado virtual.
+    body.addEventListener("focusin", function (event) {
+      var el = event.target;
+      if (!el.matches("input, select, textarea")) return;
+      setTimeout(function () { el.scrollIntoView({ block: "nearest" }); }, 300);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (modal.hidden) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      var items = focusables();
+      if (!items.length) return;
+      var firstEl = items[0];
+      var lastEl = items[items.length - 1];
+      if (event.shiftKey && (document.activeElement === firstEl || document.activeElement === dialog)) {
+        event.preventDefault();
+        lastEl.focus();
+      } else if (!event.shiftKey && document.activeElement === lastEl) {
+        event.preventDefault();
+        firstEl.focus();
+      }
     });
   }
 

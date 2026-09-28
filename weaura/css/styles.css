@@ -2006,6 +2006,108 @@ main { overflow-x: clip; }
 
 @media (max-width: 860px) { .cta__grid { grid-template-columns: 1fr; } }
 
+/* ---------- Modal "Conversar sobre um projeto" ----------
+   Recebe o próprio .cta__form-card (movido pelo JS). O diálogo assume a
+   moldura do card (borda, raio, tom) para o visual ser o mesmo da seção.
+   --modal-vh / --modal-top: área visível real (teclado virtual), via JS. */
+.project-modal {
+  position: fixed;
+  top: var(--modal-top, 0px);
+  left: 0;
+  right: 0;
+  z-index: 500;
+  height: var(--modal-vh, 100dvh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:
+    max(1rem, env(safe-area-inset-top, 0px))
+    max(1rem, env(safe-area-inset-right, 0px))
+    max(1rem, env(safe-area-inset-bottom, 0px))
+    max(1rem, env(safe-area-inset-left, 0px));
+  color: var(--color-cream);
+}
+.project-modal[hidden] { display: none; }
+.project-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 18, 16, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.32s var(--hover-ease);
+}
+.project-modal__dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 32rem);
+  max-height: 100%;
+  border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(rgba(247, 243, 238, 0.05), rgba(247, 243, 238, 0.05)), var(--color-ink);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.32s var(--hover-ease), transform 0.32s var(--hover-ease);
+}
+.project-modal__dialog:focus { outline: none; }
+.project-modal.is-open .project-modal__backdrop,
+.project-modal.is-open .project-modal__dialog { opacity: 1; transform: none; }
+.project-modal__body {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.project-modal__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-line-light);
+  border-radius: var(--radius-full);
+  background: var(--color-ink);
+  color: var(--color-cream);
+  transition: border-color var(--hover-dur) var(--hover-ease), background-color var(--hover-dur) var(--hover-ease);
+}
+.project-modal__close:hover,
+.project-modal__close:focus-visible { border-color: var(--color-sage); background: rgba(247, 243, 238, 0.09); }
+.project-modal__close svg { width: 1.1rem; height: 1.1rem; }
+/* Dentro do modal a moldura é do diálogo; o card entra sempre visível
+   (ignora o estado da animação de entrada da seção). */
+.project-modal .cta__form-card {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+.project-modal .project-form__header { padding-right: 3rem; }
+
+@media (max-width: 599px) {
+  .project-modal { padding-inline: max(0.75rem, env(safe-area-inset-left, 0px)) max(0.75rem, env(safe-area-inset-right, 0px)); }
+  .project-modal__dialog { width: 100%; border-radius: var(--radius-md); }
+  .project-modal .cta__form-card { padding: 1.5rem 1.25rem 1.35rem; }
+  .project-modal .project-form__header { margin-bottom: 1.15rem; }
+  .project-modal .project-form__field { margin-bottom: 0.85rem; }
+  .project-modal__close { top: 0.75rem; right: 0.75rem; }
+}
+/* Telas baixas (paisagem ou teclado aberto): o diálogo encosta no topo e rola por dentro. */
+@media (max-height: 560px) { .project-modal { align-items: flex-start; } }
+@media (prefers-reduced-motion: reduce) {
+  .project-modal__backdrop,
+  .project-modal__dialog { transition: none; }
+}
+
 /* =========================================================
    07 · Footer — assinatura
    Pequeno, horizontal e editorial. A atmosfera do Contato continua na

@@ -86,7 +86,7 @@
       </nav>
 
       <div class="header__actions">
-        <a class="btn btn--small btn--outline header__cta" data-wa="default" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn--small btn--outline header__cta" href="#contato" data-project-modal aria-haspopup="dialog" aria-controls="project-modal">
           <span>Conversar sobre um projeto</span>
         </a>
         <button type="button" class="header__toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Abrir menu"></button>
@@ -98,7 +98,7 @@
         <ul id="mobile-nav-links"></ul>
       </nav>
       <div class="mobile-menu__foot">
-        <a class="btn btn--ink mobile-menu__cta" data-wa="default" target="_blank" rel="noopener noreferrer">
+        <a class="btn btn--ink mobile-menu__cta" href="#contato" data-project-modal aria-haspopup="dialog" aria-controls="project-modal">
           <span>Conversar sobre um projeto</span>
         </a>
         <p class="mobile-menu__social">
@@ -316,7 +316,7 @@
         <div class="cta__form-card">
           <form id="project-form" class="project-form" novalidate>
             <div class="project-form__header">
-              <h3>Prefere adiantar alguns detalhes?</h3>
+              <h3 id="project-form-title">Prefere adiantar alguns detalhes?</h3>
               <p>Três respostas rápidas e a conversa já começa no ponto certo.</p>
             </div>
 
@@ -405,6 +405,17 @@
       </div>
     </div>
   </footer>
+
+  <!-- Modal "Conversar sobre um projeto": não tem conteúdo próprio. Ao abrir,
+       o JS move para cá o mesmo card do Contato (.cta__form-card) e o devolve
+       ao fechar — um único formulário, mesma lógica e mesmo visual. -->
+  <div class="project-modal" id="project-modal" hidden>
+    <div class="project-modal__backdrop" data-modal-close></div>
+    <div class="project-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="project-form-title">
+      <button type="button" class="project-modal__close" data-modal-close aria-label="Fechar"></button>
+      <div class="project-modal__body" id="project-modal-body"></div>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
